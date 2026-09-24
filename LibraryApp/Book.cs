@@ -12,6 +12,9 @@ public class Book
     public int TotalCopies { get; }
     public int AvailableCopies { get; private set; }
 
+    //add property for fines
+    public decimal OutstandingFine { get; private set; }
+
     public Book(string title, string author, string isbn, int totalCopies)
     {
         if (string.IsNullOrWhiteSpace(title))
@@ -47,4 +50,17 @@ public class Book
 
         AvailableCopies++;
     }
+
+
+    //constructor to add a fine to overdue books
+    public void AddFine(decimal amount)
+    {
+        if (amount < 0)
+            throw new ArgumentOutOfRangeException(nameof(amount), "Fine amount cannot be negative.");
+
+        OutstandingFine += amount;
+    }
+
+    
+
 }

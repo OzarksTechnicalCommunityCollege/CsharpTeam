@@ -16,6 +16,9 @@ public class Program
             Console.WriteLine($"{book.Title} by {book.Author} \u2014 {book.AvailableCopies}/{book.TotalCopies} available");
         }
 
+
+
+
         Console.WriteLine();
         Console.WriteLine("Checking out 'Clean Code'...");
         catalog.CheckOutBook("9780132350884");

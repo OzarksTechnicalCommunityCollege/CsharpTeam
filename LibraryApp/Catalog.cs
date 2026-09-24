@@ -56,6 +56,7 @@ public class Catalog
         book.CheckOut();
     }
 
+
     public void ReturnBook(string isbn)
     {
         var book = FindByIsbn(isbn);
@@ -69,4 +70,13 @@ public class Catalog
     {
         return _books.Sum(b => b.AvailableCopies);
     }
+   //adding a method to AddFine
+    public void AddFine(decimal fine)
+    {
+
+    }
+
+
+    
 }
+   
