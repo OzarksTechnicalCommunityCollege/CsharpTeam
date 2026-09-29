@@ -5,15 +5,14 @@ public class Program
     public static void Main(string[] args)
     {
         var catalog = new Catalog();
-
-        catalog.AddBook(new Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3));
-        catalog.AddBook(new Book("Clean Code", "Robert C. Martin", "9780132350884", 2));
-        catalog.AddBook(new Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1));
+        catalog.AddBook(new Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3, "Programming"));
+        catalog.AddBook(new Book("Clean Code", "Robert C. Martin", "9780132350884", 2, "Software Engineering"));
+        catalog.AddBook(new Book("The DevOps Handbook", "Gene Kim", "9781942788003", 1, "DevOps"));
 
         Console.WriteLine("=== Library Catalog ===");
         foreach (var book in catalog.Books)
         {
-            Console.WriteLine($"{book.Title} by {book.Author} \u2014 {book.AvailableCopies}/{book.TotalCopies} available");
+            Console.WriteLine($"{book.Title} by {book.Author} ({book.Genre}) \u2014 {book.AvailableCopies}/{book.TotalCopies} available");
         }
 
         Console.WriteLine();
@@ -22,6 +21,13 @@ public class Program
 
         var cleanCode = catalog.FindByIsbn("9780132350884");
         Console.WriteLine($"'{cleanCode!.Title}' now has {cleanCode.AvailableCopies}/{cleanCode.TotalCopies} available.");
+        Console.WriteLine();
+        Console.WriteLine("Checkout history for 'Clean Code':");
+        foreach (var rec in cleanCode.CheckoutHistory)
+        {
+            Console.WriteLine($"- {rec.Timestamp:u} : {rec.Action}");
+        }
+
 
         Console.WriteLine();
         Console.WriteLine($"Total copies available across catalog: {catalog.TotalAvailableCopies()}");
