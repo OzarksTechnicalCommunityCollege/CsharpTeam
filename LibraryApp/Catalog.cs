@@ -47,6 +47,16 @@ public class Catalog
             .ToList();
     }
 
+    public List<Book> SearchByGenre(string genreQuery)
+    {
+        if (string.IsNullOrWhiteSpace(genreQuery))
+            return new List<Book>();
+
+        return _books
+            .Where(b => string.Equals(b.Genre, genreQuery, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
     public void CheckOutBook(string isbn)
     {
         var book = FindByIsbn(isbn);
