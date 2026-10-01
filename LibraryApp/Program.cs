@@ -2,7 +2,7 @@ namespace LibraryApp;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         try
         {
@@ -21,7 +21,7 @@ public class Program
             while (true)
             {
                 Console.WriteLine("Please choose an option:\n1. Checkout book\n2.Return Book\n3. Exit");
-                string userChoice = Console.ReadLine();
+                string userChoice = Console.ReadLine() ?? string.Empty;
 
                 if (userChoice == "1")
                 {
@@ -30,7 +30,7 @@ public class Program
                     {
                         Console.WriteLine($"{book.Title}");
                     }
-                    string bookTitle = Console.ReadLine();
+                    string bookTitle = Console.ReadLine() ?? string.Empty;
 
                     foreach (var book in catalog.Books)
                     {
@@ -50,7 +50,7 @@ public class Program
                     {
                         Console.WriteLine($"{book.Title}");
                     }
-                    string bookReturned = Console.ReadLine();
+                    string bookReturned = Console.ReadLine() ?? string.Empty;
                     foreach (var book in catalog.Books)
                     {
                         if (bookReturned == book.Title)
