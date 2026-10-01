@@ -1,4 +1,9 @@
 # LibraryApp — .NET Starter Project
+<<<<<<< HEAD
+## Kaydence Norris (C#) 
+
+=======
+>>>>>>> upstream/main
 This is your starting point for the team project. It's a small console app that
 models a library book checkout system, with a test project already wired up
 and one example test in place.
