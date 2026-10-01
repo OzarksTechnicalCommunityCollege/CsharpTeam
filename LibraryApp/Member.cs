@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
@@ -10,9 +10,9 @@ namespace LibraryApp
 	internal class Member
 	{
 		// Private variables
-		private string _name;
+		private string _name = string.Empty;
 		private int _memberId;
-		private List<Book> _checkedOutBooks;
+		private List<Book> _checkedOutBooks = new List<Book>();
 		
 		// Public variables
 		public string Name { get { return _name; } set { _name = value; } }
