@@ -73,18 +73,5 @@ public class Program
             }
         }
         catch (Exception ex) { Console.WriteLine(ex.Message); }
-
-
-
-
-        //Console.WriteLine();
-        //Console.WriteLine("Checking out 'Clean Code'...");
-        //catalog.CheckOutBook("9780132350884");
-
-        //var cleanCode = catalog.FindByIsbn("9780132350884");
-        //Console.WriteLine($"'{cleanCode!.Title}' now has {cleanCode.AvailableCopies}/{cleanCode.TotalCopies} available.");
-
-        //Console.WriteLine();
-        //Console.WriteLine($"Total copies available across catalog: {catalog.TotalAvailableCopies()}");
     }
 }
