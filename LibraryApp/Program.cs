@@ -2,10 +2,15 @@ namespace LibraryApp;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         try
         {
+            int memebrId = 1;
+            List<Book> testBookList = new List<Book>();
+            Member testMember = new Member("Test", memebrId, testBookList);
+
+            ;
             var catalog = new Catalog();
 
             catalog.AddBook(new Book("The Pragmatic Programmer", "David Thomas", "9780135957059", 3));
@@ -20,8 +25,8 @@ public class Program
             Console.WriteLine();
             while (true)
             {
-                Console.WriteLine("Please choose an option:\n1. Checkout book\n2.Return Book\n3. Exit");
-                string? userChoice = Console.ReadLine();
+                Console.WriteLine("Please choose an option:\n1. Checkout book\n2.Return Book \n4. Exit");
+                string userChoice = Console.ReadLine() ?? string.Empty;
 
                 if (userChoice == "1")
                 {
@@ -30,13 +35,13 @@ public class Program
                     {
                         Console.WriteLine($"{book.Title}");
                     }
-                    string? bookTitle = Console.ReadLine();
+                    string bookTitle = Console.ReadLine() ?? string.Empty;
 
                     foreach (var book in catalog.Books)
                     {
                         if (bookTitle == book.Title)
                         {
-                            book.CheckOut();
+                            book.CheckOut(testMember);
                             Console.WriteLine($"Book has been checked out: {book.AvailableCopies} copies left");
                         }
                     }
@@ -50,7 +55,7 @@ public class Program
                     {
                         Console.WriteLine($"{book.Title}");
                     }
-                    string? bookReturned = Console.ReadLine();
+                    string bookReturned = Console.ReadLine() ?? string.Empty;
                     foreach (var book in catalog.Books)
                     {
                         if (bookReturned == book.Title)
@@ -73,18 +78,5 @@ public class Program
             }
         }
         catch (Exception ex) { Console.WriteLine(ex.Message); }
-
-
-
-
-        //Console.WriteLine();
-        //Console.WriteLine("Checking out 'Clean Code'...");
-        //catalog.CheckOutBook("9780132350884");
-
-        //var cleanCode = catalog.FindByIsbn("9780132350884");
-        //Console.WriteLine($"'{cleanCode!.Title}' now has {cleanCode.AvailableCopies}/{cleanCode.TotalCopies} available.");
-
-        //Console.WriteLine();
-        //Console.WriteLine($"Total copies available across catalog: {catalog.TotalAvailableCopies()}");
     }
 }
