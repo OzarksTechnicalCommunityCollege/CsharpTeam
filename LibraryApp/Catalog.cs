@@ -96,8 +96,9 @@ public class Catalog
         if (member is null)
             throw new InvalidOperationException($"No member found with the ID of '{memberId}'.");
 
-        member.Return(book);
+
         book.Return(member);
+        member.Return(book);
     }
 
     public int TotalAvailableCopies()

@@ -19,7 +19,7 @@ public class CatalogIntegrationTests
     [TestMethod]
     public void Catalog_Return_Book()
     {
-        Book book = new Book("Test", "Author", "123456789", 1);
+        Book book = new Book("TestBook", "Author", "123456789", 1);
         Catalog catalog = new Catalog();
         Member member = new Member("Test", 1);
         catalog.AddMember(member);
