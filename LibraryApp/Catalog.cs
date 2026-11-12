@@ -62,7 +62,7 @@ public class Catalog
     }
     public Member? FindMemberById(int memberId)
     {
-        Member member = _members.FirstOrDefault(m => m.MemberId == memberId);
+        Member? member = _members.Find(m => m.MemberId == memberId);
         if(member == null)
         {
             throw new InvalidOperationException($"A member with ID '{memberId}' does not exist.");
