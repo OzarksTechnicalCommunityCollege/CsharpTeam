@@ -62,7 +62,12 @@ public class Catalog
     }
     public Member? FindMemberById(int memberId)
     {
-        return _members.FirstOrDefault(m => m.MemberId == memberId);
+        Member? member = _members.Find(m => m.MemberId == memberId);
+        if (member == null)
+        {
+            throw new InvalidOperationException($"A member with ID '{memberId}' does not exist.");
+        }
+        return member;
     }
     public List<Member> SearchMembersByName(string nameQuery)
     {
@@ -96,8 +101,9 @@ public class Catalog
         if (member is null)
             throw new InvalidOperationException($"No member found with the ID of '{memberId}'.");
 
-        member.Return(book);
+
         book.Return(member);
+        member.Return(book);
     }
 
     public int TotalAvailableCopies()

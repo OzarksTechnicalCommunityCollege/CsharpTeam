@@ -70,26 +70,21 @@ public class MemberCatalogTests
         // Arrange
         var catalog = new Catalog();
         // Act
-        var foundMember = catalog.FindMemberById(1);
+        //var foundMember = catalog.FindMemberById(1);
+
         // Assert
-        Assert.IsNull(foundMember);
+        Assert.Throws<InvalidOperationException>(() =>
+        {
+            var foundMember = catalog.FindMemberById(1);
+        });
     }
     [TestMethod]
     public void FindMemberById_ThrowsException_WhenInvalidId()
     {
         // Arrange
         var catalog = new Catalog();
-        // Act
-        try
-        {
-            catalog.FindMemberById(-1);
-        }
-        catch (ArgumentOutOfRangeException ex)
-        {
-            // Assert
-            Assert.AreEqual("Member ID must be a positive integer. (Parameter 'memberId')", ex.Message);
-            return;
-        }
+        // Act and Assert
+        Assert.Throws<InvalidOperationException>(() => catalog.FindMemberById(-1));
     }
     [TestMethod]
     public void SearchMembersByName_ReturnsMatchingMembers_WhenExists()
@@ -149,17 +144,8 @@ public class MemberCatalogTests
         }
         var extraBook = new Book("Extra Title", "Extra Author", "0000000000005", 3);
         catalog.AddBook(extraBook);
-        // Act
-        try
-        {
-            catalog.CheckOutBook("0000000000005", 1);
-        }
-        // Assert
-        catch (InvalidOperationException ex)
-        {
-            Assert.AreEqual($"Member '{member.Name}' has checked out the max amount of books", ex.Message);
-            return;
-        }
+        // Act and Assert
+        Assert.Throws<InvalidOperationException>(() => catalog.CheckOutBook("0000000000005", 1));
     }
     [TestMethod]
     public void ReturnBook_RemovesBookFromMemberCheckedOutBooks_WhenCheckedOut()
@@ -189,14 +175,7 @@ public class MemberCatalogTests
         catalog.AddMember(member);
         catalog.AddBook(book);
         // Act
-        try
-        {
-            catalog.ReturnBook("0000000000000", 1);
-        }
-        catch (InvalidOperationException ex)
-        {
-            // Assert
-            Assert.AreEqual($"Member '{member.Name}' has not checked out the book '{book.Title}'.", ex.Message);
-        }
+        // Assert
+        Assert.Throws<InvalidOperationException>(() => catalog.ReturnBook("0000000000000", 1));
     }
 }
