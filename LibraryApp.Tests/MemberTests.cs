@@ -118,4 +118,9 @@ public class MemberTests
             return;
         }
     }
+	[TestMethod]
+	public void TemporaryFailure()
+	{
+		Assert.AreEqual(1, 2);  // deliberately wrong
+	}
 }
